@@ -12,7 +12,7 @@ import com.example.demo.singlton.SingAndProProvider;
 import com.example.demo.singlton.SingAndProScopeProxy;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.example.demo")
+@ComponentScan(basePackages = { "com.example.demo.singlton", "com.example.demo.prototype" })
 public class SingToProTest {
 
 	public static void main(String[] args) {
