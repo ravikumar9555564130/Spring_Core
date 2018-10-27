@@ -1,15 +1,20 @@
-package com.example.demo;
+package com.example.demo.singlton;
+
+import javax.inject.Provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.Bank;
+import com.example.demo.prototype.ICICIBank;
+import com.example.demo.prototype.SBIBank;
+
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class SingAndProApplicationContext {
+public class SingAndProProvider {
 
 	@Autowired
 	@Qualifier("ICICIBank")
@@ -19,21 +24,33 @@ public class SingAndProApplicationContext {
 	@Qualifier("SBIBank")
 	private Bank sbiBank;
 
-	public SingAndProApplicationContext() {
+	public SingAndProProvider() {
 		System.out.println("TestApp is created");
 	}
 
-	// First approach-- by injecting ApplicationContext
+	// Third approach :- by using Provider Interface
+
+/*	<dependency>
+		<groupId>javax.inject</groupId>
+		<artifactId>javax.inject</artifactId>
+		<version>1</version>
+   </dependency>*/
+
 
 	@Autowired
-	ApplicationContext aaplicationContext;
+	private Provider<ICICIBank> ICICIBankBeanProvider;
+
+	// Using JSR 330 Provider<T> injection by Spring
+
+	@Autowired
+	private Provider<SBIBank> SbiBankBeanProvider;
 
 	public Bank getIciciBank() {
-		return aaplicationContext.getBean(ICICIBank.class);
+		return ICICIBankBeanProvider.get();
 	}
 
 	public Bank getSbiBank() {
-		return aaplicationContext.getBean(SBIBank.class);
+		return SbiBankBeanProvider.get();
 	}
 
 	public void getIcicBankDetails() {

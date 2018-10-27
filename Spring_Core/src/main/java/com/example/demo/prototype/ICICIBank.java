@@ -1,20 +1,22 @@
-package com.example.demo;
+package com.example.demo.prototype;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("SBIBank")
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class SBIBank implements Bank {
+import com.example.demo.Bank;
 
-	private static final String NAME = "SBI";
-	private static final String IFSCCODE = "SBI01";
+@Component("ICICIBank")
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class ICICIBank implements Bank {
+
+	private static final String NAME = "ICICI";
+	private static final String IFSCCODE = "ICICI01";
 
 	private float intrestRate;
 
-	public SBIBank() {
-		System.out.println("SBIBank Created");
+	public ICICIBank() {
+		System.out.println("ICICIBank Created");
 	}
 
 	public float getIntrestRate() {
@@ -30,13 +32,12 @@ public class SBIBank implements Bank {
 		System.out.println("name :: " + NAME + ",  ifsccode :: " + IFSCCODE + " ,intrestRate ::" + intrestRate);
 
 	}
+
 	
-
-
 	@Override
 	public float getLoanIntrest() {
 		// TODO Auto-generated method stub
-		return 10;
+		return 5;
 	}
 
 }
