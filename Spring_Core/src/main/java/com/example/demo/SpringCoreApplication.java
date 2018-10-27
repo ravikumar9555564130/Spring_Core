@@ -9,6 +9,7 @@ public class SpringCoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCoreApplication.class, args);
 
+		
 		System.out.println("Spring Boot first project");
 	}
 }
