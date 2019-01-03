@@ -19,7 +19,7 @@ public class SingToProTest {
 
 		ConfigurableApplicationContext context = SpringApplication.run(SingToProTest.class, args);
 
-		// First approach-- by injecting ApplicationContext
+		/*// First approach-- by injecting ApplicationContext
 
 		SingAndProApplicationContext singAndProApplicationContext = context.getBean(SingAndProApplicationContext.class);
 
@@ -69,7 +69,7 @@ public class SingToProTest {
 
 		System.out.println("IciciBank 2:: " + singAndProProvider.getIciciBank());
 		System.out.println("SbiBank 2:: " + singAndProProvider.getSbiBank());
-
+*/
 		// Fourth approach-- Using Scoped Proxy
 
 		SingAndProScopeProxy singAndProScopeProxy = context.getBean(SingAndProScopeProxy.class);
@@ -87,7 +87,7 @@ public class SingToProTest {
 		System.out.println("IciciBank 2:: " + singAndProScopeProxy.getIciciBank());
 		System.out.println("SbiBank 2:: " + singAndProScopeProxy.getSbiBank());
 
-		// Fifth approach-- Spring provides the ObjectFactory<T> interface to produce on
+		/*// Fifth approach-- Spring provides the ObjectFactory<T> interface to produce on
 		// demand objects of the given type:
 
 		SingAndProObjectFactory singAndProObjectFactory = context.getBean(SingAndProObjectFactory.class);
@@ -103,7 +103,7 @@ public class SingToProTest {
 		singAndProObjectFactory = context.getBean(SingAndProObjectFactory.class);
 
 		System.out.println("IciciBank 2:: " + singAndProObjectFactory.getIciciBank());
-		System.out.println("SbiBank 2:: " + singAndProObjectFactory.getSbiBank());
+		System.out.println("SbiBank 2:: " + singAndProObjectFactory.getSbiBank());*/
 
 	}
 }

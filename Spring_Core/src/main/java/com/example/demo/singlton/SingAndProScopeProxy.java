@@ -29,17 +29,17 @@ public class SingAndProScopeProxy {
 	}
 
 	// Fourth approach-- Using Scoped Proxy
-
-	@Bean
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
-	public Bank getIciciBank() {
-		return new ICICIBank();
+/*
+//	@Bean
+//	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+*/	public Bank getIciciBank() {
+		return iciciBank;
 	}
-
+/*
 	@Bean
-	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)*/
 	public Bank getSbiBank() {
-		return new SBIBank();
+		return sbiBank;
 	}
 
 	public void getIcicBankDetails() {
