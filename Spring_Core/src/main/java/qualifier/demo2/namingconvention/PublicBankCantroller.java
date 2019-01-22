@@ -8,7 +8,9 @@ public class PublicBankCantroller {
 
 	@Autowired
 	// @Qualifier(value = "PublicBank")
-	private Bank publicBank;  //use naming convention instead of qualifier
+	private Bank publicBank; // using naming convention instead of Qualifier to resolve issues because of two
+								// beans (PublicBank
+								// ,PrivateBank) are eligible bank interface.
 
 	public void showBankDetails() {
 
