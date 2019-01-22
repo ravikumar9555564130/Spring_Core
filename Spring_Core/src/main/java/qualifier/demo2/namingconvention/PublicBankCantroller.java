@@ -12,6 +12,8 @@ public class PublicBankCantroller {
 								// beans (PublicBank
 								// ,PrivateBank) are eligible bank interface.
 
+	// always prefer qualifier over naming convention.
+
 	public void showBankDetails() {
 
 		publicBank.showBankDetails();
