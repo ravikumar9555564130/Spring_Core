@@ -8,7 +8,8 @@ import org.springframework.stereotype.Controller;
 public class PrivateBankCantroller {
 
 	@Autowired
-	@Qualifier(value="PrivateBank")
+	@Qualifier(value = "PrivateBank") // using Qualifier to resolve issues because of two beans (PublicBank
+									    // ,PrivateBank) are eligible bank interface.
 	private Bank bank;
 
 	public void showBankDetails() {
