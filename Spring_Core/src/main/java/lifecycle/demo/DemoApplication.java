@@ -11,13 +11,13 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = { "lifecycle.demo" })
 public class DemoApplication {
 
-	private static Logger logger = LoggerFactory.getLogger(LifeCycleController.class);
+	private static Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 
 	public static void main(String[] args) {
 
 		logger.info("================Start========================= ");
 
-		ApplicationContext applicationContext = SpringApplication.run(LifeCycleController.class, args);
+		ApplicationContext applicationContext = SpringApplication.run(DemoApplication.class, args);
 
 		LifeCycleController lifeCycleController = applicationContext.getBean("lifeCycleController", LifeCycleController.class);
 		lifeCycleController.display();
