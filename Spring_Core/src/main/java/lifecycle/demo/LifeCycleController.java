@@ -5,10 +5,11 @@ import javax.annotation.PreDestroy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.stereotype.Component;
 
 @Component(value = "lifeCycleController")
-public class LifeCycleController {
+public class LifeCycleController implements BeanNameAware{
 
 	Logger logger = LoggerFactory.getLogger(LifeCycleController.class);
 
@@ -30,6 +31,12 @@ public class LifeCycleController {
 
 		logger.info("LifeCycleController life cycle method demo");
 
+	}
+
+	@Override
+	public void setBeanName(String neanName) {
+		logger.info("BeanNameAware :: " + neanName);
+		
 	}
 
 }
