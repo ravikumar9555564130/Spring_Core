@@ -10,6 +10,7 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +18,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component(value = "lifeCycleController")
-public class LifeCycleController implements BeanNameAware,ApplicationContextAware,BeanFactoryAware,BeanClassLoaderAware,BeanPostProcessor{
+public class LifeCycleController implements BeanNameAware,ApplicationContextAware,BeanFactoryAware,BeanClassLoaderAware,BeanPostProcessor ,InitializingBean{
+	
 
 	@Autowired
 	private Test test;
@@ -80,6 +82,11 @@ public class LifeCycleController implements BeanNameAware,ApplicationContextAwar
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		logger.info("BeanPostProcessor :: postProcessAfterInitialization  :: " +bean);
 		return bean;
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		logger.info("InitializingBean");
 	}
 
 }
