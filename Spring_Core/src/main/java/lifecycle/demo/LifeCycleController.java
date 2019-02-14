@@ -10,6 +10,7 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -18,12 +19,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component(value = "lifeCycleController")
-public class LifeCycleController implements BeanNameAware,ApplicationContextAware,BeanFactoryAware,BeanClassLoaderAware,BeanPostProcessor ,InitializingBean{
-	
+public class LifeCycleController implements BeanNameAware, ApplicationContextAware, BeanFactoryAware,
+		BeanClassLoaderAware, BeanPostProcessor, InitializingBean, DisposableBean {
 
 	@Autowired
 	private Test test;
-	
+
 	Logger logger = LoggerFactory.getLogger(LifeCycleController.class);
 
 	public LifeCycleController() {
@@ -36,8 +37,12 @@ public class LifeCycleController implements BeanNameAware,ApplicationContextAwar
 	}
 
 	@PreDestroy
-	public void destroy() {
+	public void destroy1_1() {
 		logger.info("destruction activities after bean has finished it's task");
+	}
+
+	public void destroy() {
+		logger.info("DisposableBean");
 	}
 
 	public void display() {
@@ -47,40 +52,41 @@ public class LifeCycleController implements BeanNameAware,ApplicationContextAwar
 
 	}
 
-	//List of aware 
+	// List of aware
 	@Override
 	public void setBeanName(String neanName) {
 		logger.info("BeanNameAware :: " + neanName);
-		
+
 	}
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		
-		logger.info("ApplicationContextAware :: " +applicationContext.getBean("lifeCycleController", LifeCycleController.class));
-		
+
+		logger.info("ApplicationContextAware :: "
+				+ applicationContext.getBean("lifeCycleController", LifeCycleController.class));
+
 	}
 
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-		logger.info("BeanFactoryAware :: " +beanFactory.getBean("lifeCycleController", LifeCycleController.class));
-		
+		logger.info("BeanFactoryAware :: " + beanFactory.getBean("lifeCycleController", LifeCycleController.class));
+
 	}
 
 	@Override
 	public void setBeanClassLoader(ClassLoader classLoader) {
-		logger.info("BeanClassLoaderAware :: " +classLoader.getClass());
-		
+		logger.info("BeanClassLoaderAware :: " + classLoader.getClass());
+
 	}
-	
+
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		
-		logger.info("BeanPostProcessor :: postProcessBeforeInitialization :: " +bean);
-			return bean;
-		}
-	
+
+		logger.info("BeanPostProcessor :: postProcessBeforeInitialization :: " + bean);
+		return bean;
+	}
+
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		logger.info("BeanPostProcessor :: postProcessAfterInitialization  :: " +bean);
+		logger.info("BeanPostProcessor :: postProcessAfterInitialization  :: " + bean);
 		return bean;
 	}
 
